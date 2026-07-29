@@ -18,6 +18,28 @@ class LinkedList {
 
     this.size++;
   }
+  prepend(value) {
+    const node = new Node(value);
+    if (!this.head) {
+      this.tail = node;
+      this.head = node;
+      this.size++;
+      return;
+    }
+    this.head.previous = node;
+    node.nextNode = this.head;
+    this.head = node;
+
+    this.size++;
+  }
+  printList() {
+    if (!this.head) return "No contents";
+    let current = this.head;
+    while (current) {
+      console.log(current.value);
+      current = current.nextNode;
+    }
+  }
 }
 
 class Node {
@@ -30,3 +52,9 @@ class Node {
 
 var bob = new LinkedList();
 bob.append("1");
+bob.prepend("0");
+bob.append("2");
+bob.prepend("-1");
+bob.append("3");
+bob.prepend("-2");
+bob.prepend("-3");
